@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses App</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container" style="margin-top:10px;">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="/">Expenses App</a>
+                <ul class="nav">
+                    <li><a href="/">All Expenses</a></li>
+                    <li class="active"><a href="/new">Create Log</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <form action="/create" method="POST">
+                    <label>Date</label>
+                    <input type="text" name="date" placeholder="Type a date..."/>
+
+                    <label>Amount</label>
+                    <input type="text" name="amount" placeholder="Type an amount..."/>
+                    <p>
+                    <label>Details</label>
+                    <input type="text" name="details" placeholder="Type details..."/>
+                    <p>
+                    <label>Bill Number</label>
+                    <input type="text" name="billNumber" placeholder="Type Bill Number..."/>
+                    <p>
+                    <label>Remaining Amount</label>
+                    <input type="text" name="remainingAmount" placeholder="Type Remaining Amount..."/>
+                    <p>
+                        <button type="submit" class="btn">Submit</button>
+                    </p>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
