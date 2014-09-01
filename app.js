@@ -1,5 +1,6 @@
 var express = require('express'), 
-    http = require('http');
+    http = require('http'),
+    path = require('path'),
     Cash = require('/Users/sandeep/expressDir/ExpensesApp/Cash');
 var bodyParser = require('body-parser');
 var app = express();
@@ -8,7 +9,7 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(request, response) {
     Cash.find(function(err, cash) {
         if (err) {
