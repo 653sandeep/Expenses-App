@@ -2,16 +2,19 @@
 <html>
 <head>
     <title>Expenses App</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" type="text/css" href="./Public/css/bootstrap.min.css" media="screen"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container" style="margin-top:10px;">
-        <div class="navbar">
+        <div class="navbar navbar-inverse">
             <div class="navbar-inner">
                 <a class="brand" href="#">Expenses App</a>
-                <ul class="nav">
+                <ul class="nav nav-tabs">
                     <li class="active"><a href="/">All Expenses</a></li>
                     <li><a href="/new">New Log</a></li>
+                    <li><a href="/">Login</a></li>
                 </ul>
             </div>
         </div>
@@ -39,5 +42,7 @@
             </div>
         </div>
     </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

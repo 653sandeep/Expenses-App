@@ -9,14 +9,14 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(request, response) {
     Cash.find(function(err, cash) {
         if (err) {
             response.send(500, 'There was an error - tough luck.');
         }
         else {
-            response.render('index', {
+            response.render('index.ejs', {
                 cash:cash
             });
             response.write("Yaay!");
@@ -48,6 +48,6 @@ app.post('/create', function(request, response) {
     });
 });
 
-var server = app.listen(3001, function() {
+var server = app.listen(3002, function() {
     console.log('Listening on port %d', server.address().port);
   });
