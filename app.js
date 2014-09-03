@@ -1,53 +1,37 @@
 var express = require('express'), 
     http = require('http'),
     path = require('path'),
-    Cash = require('/Users/sandeep/expressDir/ExpensesApp/Cash');
+    Cash = require('./app/models/Cash');
 var bodyParser = require('body-parser');
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+var passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+var flash    = require('connect-flash');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var configDB = require('./config/database.js');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+
+mongoose.connect(configDB.url); 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-//app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', function(request, response) {
-    Cash.find(function(err, cash) {
-        if (err) {
-            response.send(500, 'There was an error - tough luck.');
-        }
-        else {
-            response.render('index.ejs', {
-                cash:cash
-            });
-            response.write("Yaay!");
-            response.end();
-        }
-    });
-});
+app.use(morgan('dev')); 
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(session({ secret: 'sessionsecret' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
-app.get('/new', function(request, response) {
-    response.render('new', {});
-});
 
-app.post('/create', function(request, response) {
-    var cash = new Cash({
-        date            : request.body.date,
-        amount          : request.body.amount,
-        details         : request.body.details,
-        billNumber      : request.body.billNumber,
-        remainingAmount : request.body.remainingAmount
-    });
+require('./app/routes.js')(app, passport); 
+require('./config/passport')(passport);
 
-    cash.save(function(err, model) {
-        if (err) {
-            response.send(500, 'There was an error ');
-        }
-        else {
-            response.redirect('/');
-        }
-    });
-});
-
-var server = app.listen(3002, function() {
+var server = app.listen(5000, function() {
     console.log('Listening on port %d', server.address().port);
   });

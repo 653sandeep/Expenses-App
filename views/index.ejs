@@ -3,7 +3,6 @@
 <head>
     <title>Expenses App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" type="text/css" href="./Public/css/bootstrap.min.css" media="screen"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -12,9 +11,10 @@
             <div class="navbar-inner">
                 <a class="brand" href="#">Expenses App</a>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="/">All Expenses</a></li>
+                    <li class="active"><a href="/index">All Expenses</a></li>
                     <li><a href="/new">New Log</a></li>
-                    <li><a href="/">Login</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <!--<li><a href="/auth/google">Login with Google</a></li>-->
                 </ul>
             </div>
         </div>
@@ -23,19 +23,19 @@
                 <% cash.forEach(function(cash) { %>
                     <div>
                         <p>
-                            <%= cash.date %>
+                            <%= "Date: " + cash.date %>
                         </p>
                         <p>
-                            <%= cash.amount %>
+                            <%= "Amount: " + cash.amount %>
                         </p>
                         <p>
-                            <%= cash.details %>
+                            <%= "Details: " + cash.details %>
                         </p>
                         <p>
-                            <%= cash.billNumber %>
+                            <%= "Bill Number: " + cash.billNumber %>
                         </p>
                         <p>
-                            <%= cash.remainingAmount %>
+                            <%= "Remaining Amount: " + cash.remainingAmount %>
                         </p>
                     </div>
                 <% }) %>
